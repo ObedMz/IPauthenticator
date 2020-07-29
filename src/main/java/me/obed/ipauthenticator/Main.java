@@ -128,9 +128,9 @@ public final class Main extends Plugin implements Listener {
                        if(!players.get(name.toLowerCase()).equalsIgnoreCase(ip)){
                            bPlayer.addAttempts();
                            if(bPlayer.getAttempts() >= getAttempts()){
-                               bPlayer.setBanned(true);
                                getProxy().getPluginManager().dispatchCommand(getProxy().getConsole(), config.getConfig().getString("config.ban_command")
                                .replaceAll("%ip%", ip));
+                               bPlayer.setBanned(true);
                            }
                            e.getPlayer().disconnect(getKickmessage());
                            ProxyServer.getInstance().getConsole().sendMessage(ChatColor.translateAlternateColorCodes('&', getAlert()
