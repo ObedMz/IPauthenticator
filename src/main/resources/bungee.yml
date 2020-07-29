@@ -1,0 +1,5 @@
+name: IPauthenticator
+version: ${project.version}
+main: me.obed.authenticator.Main
+author: obedMz
+description: IPauthenticator plugin

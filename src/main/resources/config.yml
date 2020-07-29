@@ -1,0 +1,17 @@
+config:
+  message:
+    noconsole: "&cYou cant not execute this command."
+    kick: "&cSorry but you cant join the server." ##kicked message.
+    added: "&aPlayer: %player% has been added to the list with the ip %ip%"
+    remove: "&cPlayer %player% has been removed from the list."
+    ips: "&a%ip_int% IP's has been loaded."
+    reload: "&aPlugin reloaded successfully"
+    list:
+      header: "&a================="
+      rows: "%player% , %ip%"
+      footer: "&a================="
+  logger: "true" #make a file with a list of ip who tried to enter with an account
+  alert: "&cThe ip: %ip% , try to join with the account: %account%"  #alert when a player failed to join with the wrong ip
+  permission: "ip.alert" ##Player who has this permission would see and alert when a player failed to join with an account
+  players:  ##list of players.
+    - "notch,192.168.0.1"
