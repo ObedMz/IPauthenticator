@@ -8,7 +8,6 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class purgeCommand extends SubCommands{
@@ -29,15 +28,14 @@ public class purgeCommand extends SubCommands{
             sender.sendMessage(plugin.getMessageByConfig("message.purge.error"));
             return;
         }
-        plugin.data.get(args[0]).clear();
-        plugin.data.remove(args[0], new ArrayList<String>());
+        plugin.data.get(args[0].toLowerCase()).clear();
         File file = new File(plugin.getDataFolder(), "logger.yml");
         try {
             Configuration cgf = cp.load(file);
-            for(String str : plugin.data.keySet()){
-                cgf.set("logger.try." + str, plugin.data.get(str));
-            }
+            cgf.set("logger.try." + args[0].toLowerCase(), null);
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(cgf, new File(plugin.getDataFolder(), "logger.yml"));
+            sender.sendMessage(plugin.getMessageByConfig("message.purge.success")
+            .replaceAll("%player%", args[0]));
 
         } catch (IOException e) {
             e.printStackTrace();

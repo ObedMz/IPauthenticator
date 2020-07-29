@@ -28,6 +28,7 @@ message:
     notenable: "&cEnable logger in config to use this command."
     arguments: "&cnot enough arguments, use: /ipauth history <player>"
     error: "&cThis Player is not in the list of protected accounts."
+    nohistory: "&cThere isnt any histories of this player yet."
     header: "&a=================="
     footer: "&a=================="
   list:

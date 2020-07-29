@@ -18,8 +18,12 @@ public class historyCommand extends SubCommands{
             sender.sendMessage(plugin.getMessageByConfig("message.history.error"));
             return;
         }
-        sender.sendMessage(plugin.getMessageByConfig("message.history.header"));
 
+        if(plugin.data.get(args[0]).size() <= 0){
+            sender.sendMessage(plugin.getMessageByConfig("message.history.nohistory"));
+            return;
+        }
+        sender.sendMessage(plugin.getMessageByConfig("message.history.header"));
         for(String str : plugin.data.get(args[0])){
             sender.sendMessage(ChatColor.GREEN + str);
         }
