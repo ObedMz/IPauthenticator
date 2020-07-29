@@ -7,6 +7,10 @@ import net.md_5.bungee.api.CommandSender;
 public class banCommand extends SubCommands {
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.ban")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         if(args.length <=0){
             sender.sendMessage(plugin.getMessageByConfig("message.ban.arguments"));
         return;

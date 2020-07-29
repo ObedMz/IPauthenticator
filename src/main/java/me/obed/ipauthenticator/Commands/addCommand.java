@@ -16,6 +16,10 @@ public class addCommand extends SubCommands{
 
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.add")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         if(args.length <=1){
             sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.arguments"));
             return;

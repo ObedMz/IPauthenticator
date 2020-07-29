@@ -16,6 +16,10 @@ public class removeCommand extends SubCommands {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.remove")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         if(args.length <=0){
             sender.sendMessage(plugin.getMessageByConfig("message.remove.arguments"));
             return;

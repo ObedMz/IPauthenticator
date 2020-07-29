@@ -6,6 +6,10 @@ public class ReloadCommand extends SubCommands {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.reload")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         plugin.reloadConfig();
         sender.sendMessage(plugin.getMessageByConfig("message.reload"));
         sender.sendMessage(plugin.getMessageByConfig("message.ips").replaceAll("%ip_int%", Integer.toString(plugin.players.size())));

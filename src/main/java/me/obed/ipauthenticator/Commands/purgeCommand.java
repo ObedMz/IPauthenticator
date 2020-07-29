@@ -15,6 +15,10 @@ public class purgeCommand extends SubCommands{
 
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.purge")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         if(!plugin.logger){
             sender.sendMessage(plugin.getMessageByConfig("message.history.notenable"));
             return;

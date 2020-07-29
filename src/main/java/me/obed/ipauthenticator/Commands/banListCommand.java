@@ -7,6 +7,10 @@ import net.md_5.bungee.api.CommandSender;
 public class banListCommand extends SubCommands{
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.banlist")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
             for(String str : BPlayer.getBannedips()){
                 sender.sendMessage(ChatColor.GREEN + str);
             }

@@ -1,4 +1,6 @@
 message:
+  prefix: "&6[IPAuth] "
+  nopermission: "&cYou dont have permissions to use this command."
   noconsole: "&cYou cant not execute this command."
   alert: "&cThe ip: %ip% , try to join with the account: %account%"  #alert when a player failed to join with the wrong ip
   kick: "&cSorry but you cant join the server." ##kicked message.

@@ -6,6 +6,10 @@ import net.md_5.bungee.api.CommandSender;
 public class historyCommand extends SubCommands{
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.history")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         if(!plugin.logger){
             sender.sendMessage(plugin.getMessageByConfig("message.history.notenable"));
             return;

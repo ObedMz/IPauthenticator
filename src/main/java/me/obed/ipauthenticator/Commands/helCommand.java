@@ -6,6 +6,10 @@ import net.md_5.bungee.api.CommandSender;
 public class helCommand extends SubCommands {
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if(!sender.hasPermission("ipauth.help")){
+            sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
+            return;
+        }
         sender.sendMessage(ChatColor.GREEN + "=================================");
         for(SubCommands sb : plugin.commandManager.getCommands().values()){
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',sb.info()));

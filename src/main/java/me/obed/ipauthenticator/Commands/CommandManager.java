@@ -50,9 +50,11 @@ public class CommandManager extends Command {
 
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof ProxiedPlayer){
-            sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.noconsole"));
-            return;
+            if(plugin.onlyconsole)
+                sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.noconsole"));
+                return;
         }
+
         if(args.length == 0){
             sender.sendMessage(ChatColor.RED + "Not enough arguments, type /ipauth help");
             return;

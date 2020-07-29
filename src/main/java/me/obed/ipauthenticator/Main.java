@@ -29,7 +29,7 @@ public final class Main extends Plugin implements Listener {
     private static Main instance;
     private ConfigManager config;
     public CommandManager commandManager;
-    public boolean logger;
+    public boolean logger, onlyconsole;
     private String kickmessage, permission, alert;
     private Integer attempts;
     @Override
@@ -45,6 +45,7 @@ public final class Main extends Plugin implements Listener {
         permission = config.getConfig().getString("config.permission");
         alert = config.getMessage().getString("message.alert");
         attempts = Integer.parseInt(config.getConfig().getString("config.ban_after"));
+        onlyconsole = Boolean.parseBoolean(config.getConfig().getString("config.onlyconsole"));
         logger = Boolean.parseBoolean(config.getConfig().getString("config.logger"));
         for(String str : config.getConfig().getStringList("config.players")){
             String name = str.split(",")[0].toLowerCase();
@@ -74,7 +75,7 @@ public final class Main extends Plugin implements Listener {
         }
     }
     public String getMessageByConfig(String path){
-        return ChatColor.translateAlternateColorCodes('&', config.getMessage().getString(path));
+        return ChatColor.translateAlternateColorCodes('&',config.getMessage().getString("message.prefix")  + config.getMessage().getString(path));
     }
     public void reloadConfig(){
         saveConfig();
@@ -91,6 +92,14 @@ public final class Main extends Plugin implements Listener {
         alert = ChatColor.translateAlternateColorCodes('&',  config.getMessage().getString("message.alert"));
         BPlayer.setBannedips(config.getConfig().getStringList("config.banned_ips"));
         logger = Boolean.parseBoolean(config.getConfig().getString("config.logger"));
+        BPlayer.setBannedips(config.getConfig().getStringList("config.banned_ips"));
+        if(logger){
+            config.registerLogger();
+            for(String path : players.keySet()){
+                data.put(path, (ArrayList<String>) config.getLogger().getStringList("logger.try." + path));
+            }
+
+        }
         getProxy().getConsole().sendMessage(ChatColor.GREEN + Integer.toString(players.size()) +" players added to the IPAuthenticator list.");
 
     }
@@ -130,7 +139,6 @@ public final class Main extends Plugin implements Listener {
                            if(bPlayer.getAttempts() >= getAttempts()){
                                getProxy().getPluginManager().dispatchCommand(getProxy().getConsole(), config.getConfig().getString("config.ban_command")
                                .replaceAll("%ip%", ip));
-                               bPlayer.setBanned(true);
                            }
                            e.getPlayer().disconnect(getKickmessage());
                            ProxyServer.getInstance().getConsole().sendMessage(ChatColor.translateAlternateColorCodes('&', getAlert()
