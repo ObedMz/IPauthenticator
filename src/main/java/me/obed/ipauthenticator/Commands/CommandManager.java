@@ -25,6 +25,11 @@ public class CommandManager extends Command {
     public String remove = "remove";
     public String help = "help";
     public String list = "list";
+    public String ban = "ban";
+    public String unban = "unban";
+    public String banlist = "banlist";
+    public String history = "history";
+    public String purge = "purge";
 
     public void setup(){
         plugin.getProxy().getPluginManager().registerCommand(plugin, this);
@@ -33,6 +38,11 @@ public class CommandManager extends Command {
         this.getCommands().put(remove, new removeCommand());
         this.getCommands().put(help, new helCommand());
         this.getCommands().put(list, new listCommand());
+        this.getCommands().put(ban , new banCommand());
+        this.getCommands().put(unban, new unbanCommand());
+        this.getCommands().put(banlist, new banListCommand());
+        this.getCommands().put(history, new historyCommand());
+        this.getCommands().put(purge, new purgeCommand());
     }
     public HashMap<String,SubCommands> getCommands(){
         return commands;
@@ -47,26 +57,10 @@ public class CommandManager extends Command {
             sender.sendMessage(ChatColor.RED + "Not enough arguments, type /ipauth help");
             return;
         }
-        SubCommands sbcomand = null;
-        switch (args[0].toLowerCase()){
-            case "help":
-                sbcomand = new helCommand();
-                break;
-            case "reload":
-                sbcomand = new ReloadCommand();
-                break;
-            case "add":
-                sbcomand = new addCommand();
-                break;
-            case "remove":
-                sbcomand = new removeCommand();
-                break;
-            case "list":
-                sbcomand = new listCommand();
-                break;
-            default:
-                sender.sendMessage(ChatColor.RED + "This command doesnt exist.");
-                break;
+        SubCommands sbcomand = this.getCommands().get(args[0].toLowerCase());
+        if(sbcomand == null){
+            sender.sendMessage(ChatColor.RED + "This command doesnt exist.");
+            return;
         }
 
         ArrayList<String> arrayList = new ArrayList<String>();

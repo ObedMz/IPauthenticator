@@ -1,5 +1,6 @@
-package me.obed.ipauthenticator;
+package me.obed.ipauthenticator.Objects;
 
+import me.obed.ipauthenticator.Main;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 public class ConfigManager {
     Configuration config;
     Configuration logger;
+    Configuration message;
 
     public Configuration getConfig(){
         if(config == null){
@@ -76,6 +78,36 @@ public class ConfigManager {
             }
     }
 
+
+    //message
+    public Configuration getMessage(){
+        if(message == null){
+            reloadMessage();
+        }
+        return this.message;
+    }
+
+
+    public void reloadMessage() {
+        try{
+            this.message = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(Main.getInstance().getDataFolder(), "message.yml"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void registerMessage() {
+        File file = new File(Main.getInstance().getDataFolder(), "message.yml");
+        if(!file.exists()){
+            try {
+                InputStream in = Main.getInstance().getResourceAsStream("message.yml");
+                Files.copy(in, file.toPath());
+                this.message = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(Main.getInstance().getDataFolder(), "message.yml"));
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
 

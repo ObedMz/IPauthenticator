@@ -7,8 +7,8 @@ public class ReloadCommand extends SubCommands {
     @Override
     public void execute(CommandSender sender, String[] args) {
         plugin.reloadConfig();
-        sender.sendMessage(plugin.getMessageByConfig("config.message.reload"));
-        sender.sendMessage(plugin.getMessageByConfig("config.message.ips").replaceAll("%ip_int%", Integer.toString(plugin.players.size())));
+        sender.sendMessage(plugin.getMessageByConfig("message.reload"));
+        sender.sendMessage(plugin.getMessageByConfig("message.ips").replaceAll("%ip_int%", Integer.toString(plugin.players.size())));
     }
 
     @Override

@@ -17,11 +17,11 @@ public class removeCommand extends SubCommands {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length <=0){
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.info()));
+            sender.sendMessage(plugin.getMessageByConfig("message.remove.arguments"));
             return;
         }
         if(!plugin.players.containsKey(args[0])){
-           sender.sendMessage(ChatColor.RED + "This players is not in the list.");
+            sender.sendMessage(plugin.getMessageByConfig("message.remove.error"));
             return;
         }
         plugin.players.remove(args[0], plugin.players.get(args[0]));
@@ -34,7 +34,7 @@ public class removeCommand extends SubCommands {
             }
             cgf.set("config.players",data);
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(cgf, new File(plugin.getDataFolder(), "config.yml"));
-            sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.remove")
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.remove.success")
             .replaceAll("%player%" , args[0]));
         } catch (IOException e) {
             e.printStackTrace();

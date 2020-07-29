@@ -1,0 +1,36 @@
+message:
+  noconsole: "&cYou cant not execute this command."
+  alert: "&cThe ip: %ip% , try to join with the account: %account%"  #alert when a player failed to join with the wrong ip
+  kick: "&cSorry but you cant join the server." ##kicked message.
+  reload: "&aPlugin reloaded successfully"
+  ips: "&a%ip_int% IP's has been loaded."
+  default_banned_message: "&cYour ip is not allowed on the server"
+  added:
+    arguments: "&cnot enough arguments, use: /ipauth add <ip>"
+    success: "&aPlayer: %player% has been added to the list with the ip %ip%"
+  remove:
+    arguments: "&cnot enough arguments, use: /ipauth remove <ip>"
+    success: "&cPlayer %player% has been removed from the list."
+    error: "&cThis Player is not in the list."
+  ban:
+    arguments: "&cnot enough arguments, use: /ipauth ban <ip>"
+    success:  "&aYou banned the ip: %ip%"
+    already: "&aThis IP Address is already banned"
+  unban:
+    arguments: "&cnot enough arguments, use: /ipauth unban <ip>"
+    success:  "&aYou unban the ip: %ip%"
+    error: "&aThis IP Address is not banned"
+  purge:
+    arguments: "&cnot enough arguments, use: /ipauth purge <player>"
+    success: "&aYou clean all history of %player%"
+    error: "&cThis Player is not in the list of protected accounts."
+  history:
+    notenable: "&cEnable logger in config to use this command."
+    arguments: "&cnot enough arguments, use: /ipauth history <player>"
+    error: "&cThis Player is not in the list of protected accounts."
+    header: "&a=================="
+    footer: "&a=================="
+  list:
+    header: "&a================="
+    rows: "%player% , %ip%"
+    footer: "&a================="

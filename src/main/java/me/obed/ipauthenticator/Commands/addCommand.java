@@ -17,7 +17,7 @@ public class addCommand extends SubCommands{
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length <=1){
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.info()));
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.arguments"));
             return;
         }
         File file = new File(plugin.getDataFolder(), "config.yml");
@@ -31,7 +31,7 @@ public class addCommand extends SubCommands{
             }
             cgf.set("config.players",data);
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(cgf, new File(plugin.getDataFolder(), "config.yml"));
-            sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.added")
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.success")
             .replaceAll("%player%", args[0]).replaceAll("%ip%" , args[1]));
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class addCommand extends SubCommands{
 
     @Override
     public String info() {
-        return "&a/ipauth <player> <ip>    &7Add a player and his ip to the list.";
+        return "&a/ipauth add <player> <ip>    &7Add a player and his ip to the list.";
     }
 
     @Override

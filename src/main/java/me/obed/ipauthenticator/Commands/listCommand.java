@@ -6,13 +6,13 @@ import net.md_5.bungee.api.CommandSender;
 public class listCommand extends SubCommands {
     @Override
     public void execute(CommandSender sender, String[] args) {
-        sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.list.header"));
+        sender.sendMessage(Main.getInstance().getMessageByConfig("message.list.header"));
         for(String str : Main.getInstance().players.keySet()){
-            sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.list.rows")
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.list.rows")
             .replaceAll("%player%", str).replaceAll("%ip%", Main.getInstance().players.get(str)));
         }
 
-        sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.list.footer"));
+        sender.sendMessage(Main.getInstance().getMessageByConfig("message.list.footer"));
 
     }
 
