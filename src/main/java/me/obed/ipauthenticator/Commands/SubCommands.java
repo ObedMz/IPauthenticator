@@ -2,9 +2,16 @@ package me.obed.ipauthenticator.Commands;
 
 
 import me.obed.ipauthenticator.Main;
+import me.obed.ipauthenticator.Objects.ConfigManager;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
 public abstract class SubCommands {
+    protected ConfigManager config = new ConfigManager();
+
+    protected ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
+
     protected Main plugin = Main.getInstance();
 
     public SubCommands(){

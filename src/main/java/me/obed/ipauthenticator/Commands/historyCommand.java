@@ -18,7 +18,7 @@ public class historyCommand extends SubCommands{
             sender.sendMessage(plugin.getMessageByConfig("message.history.arguments"));
             return;
         }
-        if(!plugin.players.containsKey(args[0])){
+        if(!plugin.players.contains(args[0])){
             sender.sendMessage(plugin.getMessageByConfig("message.history.error"));
             return;
         }

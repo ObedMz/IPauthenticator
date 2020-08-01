@@ -22,6 +22,22 @@ message:
     arguments: "&cnot enough arguments, use: /ipauth unban <ip>"
     success:  "&aYou unban the ip: %ip%"
     error: "&aThis IP Address is not banned"
+  addip:
+    arguments: "&cnot enough arguments, use: /ipauth addip <player> <ip>"
+    success: "&aYou have been add the IP: %ip% to the accounts %player%"
+    already: "&cThis IP is already in the list."
+    error: "&cThis user is not in the list of protected accounts."
+  removeip:
+    arguments: "&cnot enough arguments, use: /ipauth removeip <player> <ip>"
+    success:  "&aYou have been remove the ip: %ip% from the accounts %player%"
+    error: "&aThis IP is not in the list, use /ipauth listip %player%"
+    errorv2: "&aThis user is not in the list of protected accounts."
+  listip:
+    arguments: "&cnot enough arguments, use: /ipauth listip <player>"
+    header: "&a================="
+    rows: "&a%ip%"
+    footer: "&a================="
+    error: "&cThis user is not in the list of protected accounts."
   purge:
     arguments: "&cnot enough arguments, use: /ipauth purge <player>"
     success: "&aYou clean all history of %player%"
@@ -35,5 +51,5 @@ message:
     footer: "&a=================="
   list:
     header: "&a================="
-    rows: "%player% , %ip%"
+    rows: "%player%"
     footer: "&a================="

@@ -30,6 +30,9 @@ public class CommandManager extends Command {
     public String banlist = "banlist";
     public String history = "history";
     public String purge = "purge";
+    public String addip = "addip";
+    public String removeip = "removeip";
+    public String listip = "listip";
 
     public void setup(){
         plugin.getProxy().getPluginManager().registerCommand(plugin, this);
@@ -43,6 +46,9 @@ public class CommandManager extends Command {
         this.getCommands().put(banlist, new banListCommand());
         this.getCommands().put(history, new historyCommand());
         this.getCommands().put(purge, new purgeCommand());
+        this.getCommands().put(addip, new addIPCommand());
+        this.getCommands().put(removeip, new removeIPCommand());
+        this.getCommands().put(listip, new listIPCommand());
     }
     public HashMap<String,SubCommands> getCommands(){
         return commands;

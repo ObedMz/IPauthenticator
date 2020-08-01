@@ -10,6 +10,7 @@ public class BPlayer {
     private String ip;
     private Integer attempts = 0;
     private static HashMap<String, BPlayer> players = new HashMap<String, BPlayer>();
+    private static HashMap<String, List<String>> allowedIP = new HashMap<String, List<String>>();
     private static List<String> bannedips = new ArrayList<String>();
 
 
@@ -64,4 +65,9 @@ public class BPlayer {
     public void addAttempts() {
         this.attempts = this.attempts+1;
     }
+
+    public static HashMap<String, List<String>> getAllowedIP() {
+        return allowedIP;
+    }
+
 }

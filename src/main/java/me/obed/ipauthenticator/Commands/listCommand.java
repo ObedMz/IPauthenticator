@@ -11,9 +11,9 @@ public class listCommand extends SubCommands {
             return;
         }
         sender.sendMessage(Main.getInstance().getMessageByConfig("message.list.header"));
-        for(String str : Main.getInstance().players.keySet()){
+        for(String str : Main.getInstance().players){
             sender.sendMessage(Main.getInstance().getMessageByConfig("message.list.rows")
-            .replaceAll("%player%", str).replaceAll("%ip%", Main.getInstance().players.get(str)));
+            .replaceAll("%player%", str));
         }
 
         sender.sendMessage(Main.getInstance().getMessageByConfig("message.list.footer"));

@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 public final class Main extends Plugin implements Listener {
     private ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
-    public HashMap<String,String> players = new HashMap<String,String>();
+    public ArrayList<String> players = new ArrayList<String>();
     public HashMap<String, ArrayList<String>> data = new HashMap<String,ArrayList<String>>();
     private static Main instance;
     private ConfigManager config;
@@ -47,15 +47,11 @@ public final class Main extends Plugin implements Listener {
         attempts = Integer.parseInt(config.getConfig().getString("config.ban_after"));
         onlyconsole = Boolean.parseBoolean(config.getConfig().getString("config.onlyconsole"));
         logger = Boolean.parseBoolean(config.getConfig().getString("config.logger"));
-        for(String str : config.getConfig().getStringList("config.players")){
-            String name = str.split(",")[0].toLowerCase();
-            String ip = str.split(",")[1];
-            players.put(name, ip);
-        }
+        players = (ArrayList<String>) config.getConfig().getStringList("config.players");
         BPlayer.setBannedips(config.getConfig().getStringList("config.banned_ips"));
         if(logger){
             config.registerLogger();
-            for(String path : players.keySet()){
+            for(String path : players){
                     data.put(path, (ArrayList<String>) config.getLogger().getStringList("logger.try." + path));
             }
 
@@ -82,9 +78,7 @@ public final class Main extends Plugin implements Listener {
         config.reloadConfig();
         players.clear();
         for(String str : config.getConfig().getStringList("config.players")){
-            String name = str.split(",")[0].toLowerCase();
-            String ip = str.split(",")[1];
-            players.put(name, ip);
+            players.add(str.toLowerCase());
         }
         attempts = Integer.parseInt(config.getConfig().getString("config.ban_after"));
         kickmessage = ChatColor.translateAlternateColorCodes('&', config.getMessage().getString("message.kick"));
@@ -95,7 +89,7 @@ public final class Main extends Plugin implements Listener {
         BPlayer.setBannedips(config.getConfig().getStringList("config.banned_ips"));
         if(logger){
             config.registerLogger();
-            for(String path : players.keySet()){
+            for(String path : players){
                 data.put(path, (ArrayList<String>) config.getLogger().getStringList("logger.try." + path));
             }
 
@@ -114,6 +108,7 @@ public final class Main extends Plugin implements Listener {
         }catch (Exception e){
             e.printStackTrace();
         }
+        config.reloadConfig();
     }
 
     @EventHandler
@@ -133,8 +128,12 @@ public final class Main extends Plugin implements Listener {
                    BPlayer bPlayer = BPlayer.getBPlayer(e.getPlayer());
                    String name = e.getPlayer().getName();
                    String ip = e.getPlayer().getAddress().getHostString();
-                   if(players.containsKey(name.toLowerCase())){
-                       if(!players.get(name.toLowerCase()).equalsIgnoreCase(ip)){
+                   if(players.contains(name.toLowerCase())){
+                       config.reloadConfig();
+                       BPlayer.getAllowedIP().put(name.toLowerCase(), config.getConfig().getStringList("config.accounts-ip." + name.toLowerCase()));
+                       // validar la ip
+
+                       if(!BPlayer.getAllowedIP().get(name.toLowerCase()).contains(ip)){
                            bPlayer.addAttempts();
                            if(bPlayer.getAttempts() >= getAttempts()){
                                getProxy().getPluginManager().dispatchCommand(getProxy().getConsole(), config.getConfig().getString("config.ban_command")

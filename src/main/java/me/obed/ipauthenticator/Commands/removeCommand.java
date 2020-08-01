@@ -1,7 +1,6 @@
 package me.obed.ipauthenticator.Commands;
 
 import me.obed.ipauthenticator.Main;
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -9,11 +8,8 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class removeCommand extends SubCommands {
-    private ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
-
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(!sender.hasPermission("ipauth.remove")){
@@ -24,19 +20,16 @@ public class removeCommand extends SubCommands {
             sender.sendMessage(plugin.getMessageByConfig("message.remove.arguments"));
             return;
         }
-        if(!plugin.players.containsKey(args[0])){
+        if(!plugin.players.contains(args[0])){
             sender.sendMessage(plugin.getMessageByConfig("message.remove.error"));
             return;
         }
-        plugin.players.remove(args[0], plugin.players.get(args[0]));
+        plugin.players.remove(args[0]);
         File file = new File(plugin.getDataFolder(), "config.yml");
         try {
             Configuration cgf = cp.load(file);
-            ArrayList<String> data = new ArrayList<String>();
-            for(String st : plugin.players.keySet()){
-                data.add(st+"," + plugin.players.get(st));
-            }
-            cgf.set("config.players",data);
+            cgf.set("config.players",plugin.players);
+            cgf.set("config.accounts-ip." + args[0].toLowerCase(), null);
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(cgf, new File(plugin.getDataFolder(), "config.yml"));
             sender.sendMessage(Main.getInstance().getMessageByConfig("message.remove.success")
             .replaceAll("%player%" , args[0]));

@@ -1,7 +1,6 @@
 package me.obed.ipauthenticator.Commands;
 
 import me.obed.ipauthenticator.Main;
-import me.obed.ipauthenticator.Objects.BPlayer;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.config.Configuration;
@@ -10,33 +9,38 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class addCommand extends SubCommands{
-
+public class removeIPCommand extends SubCommands{
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(!sender.hasPermission("ipauth.add")){
+        if(!sender.hasPermission("ipauth.ipremove")){
             sender.sendMessage(plugin.getMessageByConfig("message.nopermission"));
             return;
         }
         if(args.length <=1){
-            sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.arguments"));
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.removeip.arguments"));
             return;
         }
+        if(!plugin.players.contains(args[0].toLowerCase())){
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.removeip.errorv2"));
+            return;
+        }
+        List<String> data = config.getConfig().getStringList("config.accounts-ip." + args[0].toLowerCase());
+        //validando si contiene la ip
+        if(!data.contains(args[1])){
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.removeip.error")
+            .replaceAll("%player%", args[0]));
+            return;
+        }
+        data.remove(args[1]);
         File file = new File(plugin.getDataFolder(), "config.yml");
         try {
-            plugin.players.remove(args[0]);
-            plugin.players.add(args[0]);
-            List<String> data = new ArrayList<String>();
-            data.add(args[1]);
             Configuration cgf = cp.load(file);
-            cgf.set("config.players",plugin.players);
             cgf.set("config.accounts-ip." + args[0], data);
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(cgf, new File(plugin.getDataFolder(), "config.yml"));
-            sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.success")
-            .replaceAll("%player%", args[0]).replaceAll("%ip%" , args[1]));
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.removeip.success")
+                    .replaceAll("%player%", args[0]).replaceAll("%ip%" , args[1]));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,12 +49,12 @@ public class addCommand extends SubCommands{
 
     @Override
     public String name() {
-        return plugin.commandManager.add;
+        return plugin.commandManager.removeip;
     }
 
     @Override
     public String info() {
-        return "&a/ipauth add <player> <ip>    &7Add a player and his ip to the list.";
+        return ChatColor.translateAlternateColorCodes('&', "&a/ipauth removeip <player> <ip>  &7remove one IP of a player.");
     }
 
     @Override
