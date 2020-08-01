@@ -8,10 +8,8 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class purgeCommand extends SubCommands{
-    private ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 
     @Override
     public void execute(CommandSender sender, String[] args) {

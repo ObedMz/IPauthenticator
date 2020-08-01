@@ -1,7 +1,6 @@
 package me.obed.ipauthenticator.Commands;
 
 import me.obed.ipauthenticator.Main;
-import me.obed.ipauthenticator.Objects.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 
