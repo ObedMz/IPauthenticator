@@ -139,7 +139,7 @@ public final class Main extends Plugin implements Listener {
                                getProxy().getPluginManager().dispatchCommand(getProxy().getConsole(), config.getConfig().getString("config.ban_command")
                                .replaceAll("%ip%", ip));
                            }
-                           e.getPlayer().disconnect(getKickmessage());
+                           e.getPlayer().disconnect(ChatColor.translateAlternateColorCodes('&',config.getMessage().getString("message.prefix") + getKickmessage()));
                            ProxyServer.getInstance().getConsole().sendMessage(ChatColor.translateAlternateColorCodes('&', getAlert()
                                    .replaceAll("%ip%", ip)
                                    .replaceAll("%account%", name)));
