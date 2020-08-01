@@ -26,6 +26,11 @@ public class addIPCommand extends SubCommands{
             sender.sendMessage(Main.getInstance().getMessageByConfig("message.addip.error"));
             return;
         }
+        if(args[1] == null || args[1].equalsIgnoreCase("")){
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.arguments"));
+            return;
+        }
+        config.reloadConfig();
         List<String> data = config.getConfig().getStringList("config.accounts-ip." + args[0].toLowerCase());
         if(data.contains(args[1])){
             sender.sendMessage(Main.getInstance().getMessageByConfig("message.addip.already"));
@@ -42,7 +47,7 @@ public class addIPCommand extends SubCommands{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        config.reloadConfig();
 
 
     }

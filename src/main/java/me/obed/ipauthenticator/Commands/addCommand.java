@@ -23,6 +23,10 @@ public class addCommand extends SubCommands{
             sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.arguments"));
             return;
         }
+        if(args[1] == null || args[1].equalsIgnoreCase("")){
+            sender.sendMessage(Main.getInstance().getMessageByConfig("message.added.arguments"));
+            return;
+        }
         File file = new File(plugin.getDataFolder(), "config.yml");
         try {
             plugin.players.remove(args[0]);
