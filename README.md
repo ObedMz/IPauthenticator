@@ -16,13 +16,13 @@ or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthentica
 
 ## Commands
 * ipauth help
-     > Muestra la lista de comandos disponibles
+     > Show the list of available commands
 * /ipauth add (player) (ip)
-     > Agrega una cuenta y a su ip a la lista de cuentas protegidas.
+     > Add a player and his IP to the list of protected accounts
 * /ipauth remove (player)
-     > Elimina una cuenta de la lista.
- * /ipauth list
-     > Muestra todas las cuentas protegidas.
+     > Remove a player and his IP of the list of protected accounts
+* /ipauth list
+     > List all players who are in the list of protected accounts
 * /ipauth addip (player) (ip)
      > Add other IP to an account.
 * /ipauth removeip (player)(ip)
@@ -30,19 +30,19 @@ or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthentica
 * /ipauth listip (player)
      > Show the list of IP.
 * /ipauth history (player)
-     > Muestra el historial de intentos fallidos de la cuenta.
+     > Show a list of failed attempts in the account.
 * /ipauth purge (player)
-     > Limpia el historial de la cuenta.
+     > Clean the list of failed attempts of an account.
 * /ipauth ban (ip)
-     > Banea permanentemente una ip.
+     > permanently ban an IP 
 * /ipauth unban (ip)
-     > Unbanea una IP 
+     > Unban an IP 
 * /ipauth banlist
-     > Muestra la lista de ips baneadas
+     > Show the list of banned IP's
 * ipauth reload
-      Recarga la configuración del plugin.
+      Reload the config File
 
-## Permisos
+## Permissions
   * ipauth.reload
   * ipauth.add
   * ipauth.remove
