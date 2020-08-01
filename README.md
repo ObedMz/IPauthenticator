@@ -21,7 +21,13 @@ or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthentica
      > Add a player and his IP to the list of protected accounts
 * /ipauth remove (player)
      > Remove a player and his IP of the list of protected accounts
- * /ipauth list
+* /ipauth addip (player) (ip)
+     > Add other IP to an account.
+* /ipauth removeip (player)(ip)
+     > Remove a certain IP of an account.
+* /ipauth listip (player)
+     > Show the list of IP.
+* /ipauth list
      > List all players who are in the list of protected accounts
 * /ipauth history (player)
      > Show a list of failed attempts in the account.
@@ -40,6 +46,9 @@ or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthentica
   * ipauth.reload
   * ipauth.add
   * ipauth.remove
+  * ipauth.addip
+  * ipauth.removeip
+  * ipauth.listip
   * ipauth.ban
   * ipauth.unban
   * ipauth.banlist
