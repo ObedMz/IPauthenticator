@@ -14,47 +14,47 @@ You can compile it from the command line:
  After this, you just drop the jar file into the /plugins folder of your BungeeCord server
 or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthenticator/releases/download/1.1-SNAPSHOT/IpAuthentication-1.1-SNAPSHOT.jar)
 
-### Commands
+## Commands
 * ipauth help
-     > Show the list of available commands
+     > Muestra la lista de comandos disponibles
 * /ipauth add (player) (ip)
-     > Add a player and his IP to the list of protected accounts
+     > Agrega una cuenta y a su ip a la lista de cuentas protegidas.
 * /ipauth remove (player)
-     > Remove a player and his IP of the list of protected accounts
+     > Elimina una cuenta de la lista.
+ * /ipauth list
+     > Muestra todas las cuentas protegidas.
 * /ipauth addip (player) (ip)
      > Add other IP to an account.
 * /ipauth removeip (player)(ip)
      > Remove a certain IP of an account.
 * /ipauth listip (player)
      > Show the list of IP.
-* /ipauth list
-     > List all players who are in the list of protected accounts
 * /ipauth history (player)
-     > Show a list of failed attempts in the account.
+     > Muestra el historial de intentos fallidos de la cuenta.
 * /ipauth purge (player)
-     > Clean the list of failed attempts of an account.
+     > Limpia el historial de la cuenta.
 * /ipauth ban (ip)
-     > permanently ban an IP 
+     > Banea permanentemente una ip.
 * /ipauth unban (ip)
-     > Unban an IP 
+     > Unbanea una IP 
 * /ipauth banlist
-     > Show the list of banned IP's
+     > Muestra la lista de ips baneadas
 * ipauth reload
-      Reload the config File
+      Recarga la configuración del plugin.
 
-## Permissions
+## Permisos
   * ipauth.reload
   * ipauth.add
   * ipauth.remove
-  * ipauth.addip
-  * ipauth.removeip
-  * ipauth.listip
   * ipauth.ban
   * ipauth.unban
   * ipauth.banlist
   * ipauth.list
   * ipauth.history
   * ipauth.purge
+  * ipauth.ipadd
+  * ipauth.ipremove
+  * ipauth.iplist
   
   
   
