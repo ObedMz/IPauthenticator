@@ -12,7 +12,7 @@ You can compile it from the command line:
  mvn clean install
  ```
  After this, you just drop the jar file into the /plugins folder of your BungeeCord server
-or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthenticator/releases/download/1.1-SNAPSHOT/IpAuthentication-1.1-SNAPSHOT.jar)
+or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthenticator/releases/download/1.3-SNAPSHOT/IpAuthentication-1.3-SNAPSHOT.jar)
 
 ## Commands
 * ipauth help
