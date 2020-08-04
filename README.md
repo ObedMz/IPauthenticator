@@ -12,17 +12,23 @@ You can compile it from the command line:
  mvn clean install
  ```
  After this, you just drop the jar file into the /plugins folder of your BungeeCord server
-or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthenticator/releases/download/1.1-SNAPSHOT/IpAuthentication-1.1-SNAPSHOT.jar)
+or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthenticator/releases/download/1.3-SNAPSHOT/IpAuthentication-1.3-SNAPSHOT.jar)
 
-### Commands
+## Commands
 * ipauth help
      > Show the list of available commands
 * /ipauth add (player) (ip)
      > Add a player and his IP to the list of protected accounts
 * /ipauth remove (player)
      > Remove a player and his IP of the list of protected accounts
- * /ipauth list
+* /ipauth list
      > List all players who are in the list of protected accounts
+* /ipauth addip (player) (ip)
+     > Add other IP to an account.
+* /ipauth removeip (player)(ip)
+     > Remove a certain IP of an account.
+* /ipauth listip (player)
+     > Show the list of IP.
 * /ipauth history (player)
      > Show a list of failed attempts in the account.
 * /ipauth purge (player)
@@ -46,6 +52,9 @@ or get the .jar directly from [descargar](https://github.com/ObedMz/IPauthentica
   * ipauth.list
   * ipauth.history
   * ipauth.purge
+  * ipauth.ipadd
+  * ipauth.ipremove
+  * ipauth.iplist
   
   
   
