@@ -32,9 +32,9 @@ public class ConfigManager {
     }
 
     public void registerConfig() {
-        if(!Main.getInstance().getDataFolder().exists()){
+        if(!Main.getInstance().getDataFolder().exists()) {
             Main.getInstance().getDataFolder().mkdir();
-
+        }
             File file = new File(Main.getInstance().getDataFolder(), "config.yml");
             if(!file.exists()){
                 try {
@@ -45,7 +45,6 @@ public class ConfigManager {
                     e.printStackTrace();
                 }
             }
-        }
     }
 
     //logger
