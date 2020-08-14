@@ -56,9 +56,10 @@ public class CommandManager extends Command {
 
     public void execute(CommandSender sender, String[] args) {
         if(sender instanceof ProxiedPlayer){
-            if(plugin.onlyconsole)
-                sender.sendMessage(Main.getInstance().getMessageByConfig("config.message.noconsole"));
+            if(plugin.onlyconsole) {
+                sender.sendMessage(Main.getInstance().getMessageByConfig("message.noconsole"));
                 return;
+            }
         }
 
         if(args.length == 0){

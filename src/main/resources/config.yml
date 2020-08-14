@@ -8,6 +8,6 @@ config:
     - "player"
   accounts-ip:
     player:
-        - "1.27.0.01"
+      - "1.27.0.01"
   banned_ips:
     - "12.12.12.12"

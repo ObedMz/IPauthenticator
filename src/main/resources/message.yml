@@ -8,10 +8,10 @@ message:
   ips: "&a%ip_int% IP's has been loaded."
   default_banned_message: "&cYour ip is not allowed on the server"
   added:
-    arguments: "&cnot enough arguments, use: /ipauth add <ip>"
+    arguments: "&cnot enough arguments, use: /ipauth add <ip> <player>"
     success: "&aPlayer: %player% has been added to the list with the ip %ip%"
   remove:
-    arguments: "&cnot enough arguments, use: /ipauth remove <ip>"
+    arguments: "&cnot enough arguments, use: /ipauth remove <player> <ip>"
     success: "&cPlayer %player% has been removed from the list."
     error: "&cThis Player is not in the list."
   ban:
