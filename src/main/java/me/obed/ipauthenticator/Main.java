@@ -113,6 +113,10 @@ public final class Main extends Plugin implements Listener {
 
     @EventHandler
     public void blockedip(PreLoginEvent e){
+        if (e.isCancelled()) {
+            return;
+        }
+        
         BPlayer bPlayer = BPlayer.getBPlayer(e.getConnection().getAddress().getHostString());
         if(bPlayer.isBanned()){
             e.getConnection().disconnect(getMessageByConfig("message.default_banned_message"));
